@@ -14,22 +14,23 @@
     $color-b: rgb(153, 58, 58);
     .nav {
         background-color: $color-b;
-        height: 38px;
+        height: 5%;
         width: 100%;
         text-align: center;
         display: block;
         border: 1px solid black;
         .navbtns {
-            
-            padding-top: 8px;
+            padding-top: .8%;
+            padding-bottom: .8%;
             .navbtn {
-                background-color: $color-a;
-                margin: 5px;
-                padding: 5px;
                 color: white;
                 font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-                margin-right: 10px;
-                border-radius: 20%;
+                background-color: $color-a;
+                display: inline-block;
+                margin-right: 10%;
+                width: 200px;
+                
+                height: 25px;
             }
         }
     }
