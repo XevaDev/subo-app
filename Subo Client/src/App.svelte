@@ -23,9 +23,9 @@ onMount(() => {
         <br>
         <UserProfile
             id={1}
-            username="Xevaltan"
+            username="Zerty4321"
             bio = {{lines:["Video Games","League Of Legends","Drawing"]}}
-            icon={{profileLink:"/",username:"Zerty4321",src:"https://spng.pngfind.com/pngs/s/676-6764065_default-profile-picture-transparent-hd-png-download.png"}}>
+            icon={{profileLink:"/",src:"https://spng.pngfind.com/pngs/s/676-6764065_default-profile-picture-transparent-hd-png-download.png"}}>
         </UserProfile>
     </div>
 </main>
