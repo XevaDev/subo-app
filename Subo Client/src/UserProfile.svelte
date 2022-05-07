@@ -4,14 +4,17 @@
 
     export let username: string;
     export let id: number;
+    export let icon: {username:string,profileLink:string,src:string};
+    export let bio: {lines:string[]};
+
 </script>
 
 <div class={"uprofile "+id+""}>
     <div>
-        <UserIcon username={username} profileLink="/" src="https://preview.redd.it/wqw27832zwo71.png?width=640&crop=smart&auto=webp&s=53735ff45b4d7592b1d2004e663b0e875cc03cd4"/>
+        <UserIcon username={icon.username} profileLink={icon.profileLink} src={icon.src} />
         <h3>{username}</h3>
     </div>
-    <UserBio lines={["One","Two","Three"]}/>
+    <UserBio lines = {bio.lines} />
 </div>
 
 <style lang="scss">

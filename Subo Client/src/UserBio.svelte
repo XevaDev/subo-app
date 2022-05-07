@@ -1,5 +1,6 @@
 <script lang="ts">
-    export let lines: string[];
+    export let lines: string[]
+
 </script>
 
 <div class="ubio">
@@ -7,9 +8,3 @@
         <p>{line}</p>
     {/each}
 </div>
-
-<style>
-    .ubio {
-        
-    }
-</style>
