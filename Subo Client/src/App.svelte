@@ -1,13 +1,12 @@
 <script lang="ts">
 import {
     onMount
-} from "svelte";
+} from "svelte"
 
-import CategoryPage from "./CategoryPage.svelte";
+import { cookie } from "./cookie";
 
 import Navbar from "./Navbar.svelte";
 import Page from "./Page.svelte";
-import UserProfile from "./UserProfile.svelte";
 
 onMount(() => {
     document.title = "Subo App"
@@ -19,7 +18,7 @@ onMount(() => {
 <main>
     <Navbar></Navbar>
     <br>
-    <Page page={1}/>
+    <Page page={6}/>
 </main>
 
 <style lang="scss">

@@ -1,28 +1,20 @@
 <script lang="ts">
     import UserContent from "./UserContent.svelte";
 
-    export let category: string;
+    export let category: { id:string, name:string};
+
     type contentype = {
         id:number
     }
 
-    let content: contentype[];
+    let contents: contentype[];
 
-    let testList = [
-        {
-            category: "animal",
-            id: 1,
-            mediaLink:"",
-            title:"Hello Animals",
-            desc: []
-        }
-    ]
 </script>
 
 <div>
-    <h1>Category: {category}</h1>
+    <h1>Category: {category.name}</h1>
     <div class="contents">
-        {#each content as c}
+        {#each contents as c}
             <UserContent id={c.id}/>
         {/each}
     </div>
