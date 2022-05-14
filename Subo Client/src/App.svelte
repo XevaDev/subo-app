@@ -6,32 +6,29 @@ import {
 import CategoryPage from "./CategoryPage.svelte";
 
 import Navbar from "./Navbar.svelte";
+import Page from "./Page.svelte";
 import UserProfile from "./UserProfile.svelte";
 
 onMount(() => {
     document.title = "Subo App"
+    document.body.style.backgroundColor = "#E6D4D0";
 })
 
 </script>
 
 <main>
     <Navbar></Navbar>
-    <div>
-        <h1>Hello World!</h1>
-        <p>This is the start of the Subo Client</p>
-
-        <br>
-        <UserProfile
-            id={1}
-            username="Zerty4321"
-            bio = {{lines:["Video Games","League Of Legends","Drawing"]}}
-            icon={{profileLink:"/",src:"https://spng.pngfind.com/pngs/s/676-6764065_default-profile-picture-transparent-hd-png-download.png"}}>
-        </UserProfile>
-    </div>
+    <br>
+    <Page page={1}/>
 </main>
 
 <style lang="scss">
+   
+
+    $color: #C17363;
+    
     main {
+        background-color: $color;
         div {
             margin-left: 45px;
         }

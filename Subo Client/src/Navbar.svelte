@@ -1,37 +1,22 @@
 <script>
+    export let homeLink = "/"
 </script>
-
-<div class="nav">
-    <div class="navbtns">
-        <a class="navbtn" type="button" href="/">Menu</a>
-        <a class="navbtn" type="button" href="/">Categories</a>
-        <a class="navbtn" type="button" href="/">Discover</a>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href={homeLink} >Subo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href={homeLink}>Home</a>
+              <a class="nav-link" href="/">Trends</a>
+              <a class="nav-link" href="/">Categories</a>
+            </div>
+          </div>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-danger" type="submit">Search</button>
+      </form>
     </div>
-</div>
-
-<style lang="scss">
-    $color-a: rgb(161, 23, 23);
-    $color-b: rgb(153, 58, 58);
-    .nav {
-        background-color: $color-b;
-        height: 5%;
-        width: 100%;
-        text-align: center;
-        display: block;
-        border: 1px solid black;
-        .navbtns {
-            padding-top: .8%;
-            padding-bottom: .8%;
-            .navbtn {
-                color: white;
-                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-                background-color: $color-a;
-                display: inline-block;
-                margin-right: 10%;
-                width: 200px;
-                
-                height: 25px;
-            }
-        }
-    }
-</style>
+</nav>
