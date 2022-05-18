@@ -1,25 +1,35 @@
 <script lang="ts">
-    import Tooltip from './Tooltip.svelte';
-	import { tooltip } from './tooltip';
-	import { tooltip as tooltipv1 } from './tooltip.v1';
+  import { onMount } from "svelte";
 
-    export let src: string;
-    export let profileLink: string;
-    export let username: string;
+  import { tooltip } from "./tooltip";
+
+  export let src: string;
+  export let profileLink: string;
+  export let username: string;
+  export let from: string | undefined;
+
+  function redirect() {
+    document.location = profileLink;
+  }
+  function onClick() {
+    onMount(() => {
+      if (!(from === "navbar")) {
+        redirect();
+      }
+    });
+  }
 </script>
 
-<div class="icon">
-    <a href={profileLink}>
-        <img title={username} src={src} alt="" use:tooltip>
-    </a>
+<div class="icon" on:click={onClick}>
+  <img title={username} {src} alt="" use:tooltip />
 </div>
 
 <style lang="scss">
-    .icon {
-        img {
-            border-radius: 50%;
-            height: 60px;
-            width: 60x;
-        }
+  .icon {
+    img {
+      border-radius: 50%;
+      height: 60px;
+      width: 60x;
     }
+  }
 </style>
