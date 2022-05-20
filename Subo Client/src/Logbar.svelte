@@ -1,39 +1,54 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { checkExist } from "./checkExist";
+  import { getClientInfo } from "./getClientInfo";
 
   import UserIcon from "./UserIcon.svelte";
-  type settingsType =
-    | {
-        username: string;
-        profileLink: string;
-        imageSource: string;
-      }
-    | undefined;
-  export let settings: settingsType;
 
-  let h = () => {};
+  let h = () => {
+    document.location = "http://localhost:8080/?page=6";
+  };
 
-  onMount(() => {});
+  let vars = async function () {
+    let t = await checkExist();
+    let settings: {
+      imageSource: string;
+      username: string;
+      profileLink: string;
+    };
+
+    if (t === true) {
+      let g = await getClientInfo(localStorage.token, "http://localhost:2000");
+
+      settings = {
+        imageSource: g.avatar,
+        username: g.username,
+        profileLink: "/",
+      };
+    }
+
+    return { settings: settings, t: t };
+  };
 </script>
 
 <div class="knav">
-  {#if checkExist()}
-    <UserIcon
-      from={"navbar"}
-      username={settings.username}
-      profileLink={settings.profileLink}
-      src={settings.imageSource}
-      on:click={h}
-    />
-  {/if}
-  {#if !checkExist()}
-    <div>
-      <h6>Aren't you connected ?</h6>
-      <a href="http://localhost:2000/reg">Register</a>
-      <a href="http://localhost:2000/nect">Connect</a>
-    </div>
-  {/if}
+  {#await vars() then v}
+    {#if v.t === true}
+      <UserIcon
+        from={"navbar"}
+        username={v.settings.username}
+        profileLink={v.settings.profileLink}
+        src={v.settings.imageSource}
+        id={"navuicon"}
+      />
+    {/if}
+    {#if !v.t}
+      <div>
+        <h6>Aren't you connected ?</h6>
+        <a href="http://localhost:2000/reg">Register</a>
+        <a href="http://localhost:2000/nect">Connect</a>
+      </div>
+    {/if}
+  {/await}
 </div>
 
 <style>

@@ -1,22 +1,18 @@
 let serverBase = "http://localhost:2000";
-export let checkExist = () => {
-    let res = false;
+export async function checkExist() {
     let w = window.localStorage.getItem("token");
     if (w === null) {
         console.error("Tried to connect but no token found.");
-        return;
     }
-    fetch(`${serverBase}/checkExist?token=${w}`)
-        .then(async (resx) => {
-        if (await resx.json()) {
-            if ((await resx.json()).exists === true) {
-                res = true;
-            }
+    else {
+        try {
+            const response = await fetch(`${serverBase}/checkExist/?token=${w}`);
+            const json = await response.json();
+            return json.exists ? true : false;
         }
-    })
-        .catch(() => {
-        console.error("Failed to load account.");
-    });
-    return res;
-};
+        catch (e) {
+            console.error("Failed to load account.");
+        }
+    }
+}
 //# sourceMappingURL=checkExist.js.map
