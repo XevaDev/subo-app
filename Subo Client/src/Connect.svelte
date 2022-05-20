@@ -5,6 +5,7 @@
   let bad: boolean = false;
   let errServ = false;
 
+  let good = false;
   function co() {
     let emailx: HTMLInputElement = document.querySelector("#inputEmail");
     let pw: HTMLInputElement = document.querySelector("#inputPassword");
@@ -22,7 +23,11 @@
             if (json.bad === true) {
               bad = true;
             } else {
+              good = true;
               localStorage.token = json.token;
+              setTimeout(() => {
+                window.location.assign("/");
+              }, 3000);
             }
           } else {
             console.error("Can't receive data.");
@@ -91,6 +96,11 @@
     <div class="alert alert-danger" role="alert">
       Couldn't connect to the server.
     </div>
+    <br />
+  {/if}
+
+  {#if good === true}
+    <div class="alert alert-success" role="alert">Success! Redirecting</div>
     <br />
   {/if}
   <div />
