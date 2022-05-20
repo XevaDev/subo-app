@@ -6,7 +6,7 @@ export async function checkExist() {
     }
     else {
         try {
-            const response = await fetch(`${serverBase}/users/private/exists/?token=${w}`);
+            const response = await fetch(`${serverBase}/users/private/exists/${w}`);
             const json = await response.json();
             return json.exists ? true : false;
         }

@@ -6,7 +6,7 @@
   let errServ = false;
 
   let good = false;
-  function co() {
+  async function co() {
     let emailx: HTMLInputElement = document.querySelector("#inputEmail");
     let pw: HTMLInputElement = document.querySelector("#inputPassword");
 
@@ -15,35 +15,36 @@
       pw: pw.value,
     };
 
-    fetch(`${baseServe}/users/login?email=${form.email}&pw=${form.pw}`)
-      .then((res) => {
-        res.json().then((json) => {
-          if (json) {
-            console.log(json);
-            if (json.bad === true) {
-              bad = true;
-            } else {
-              good = true;
-              localStorage.token = json.token;
-              setTimeout(() => {
-                window.location.assign("/");
-              }, 3000);
-            }
-          } else {
-            console.error("Can't receive data.");
-          }
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-        errServ = true;
-      });
+    try {
+      let res = await fetch(
+        `${baseServe}/users/login/${form.email}/${form.pw}`
+      );
+
+      let json = await res.json();
+      if (json) {
+        console.log(json);
+        if (json.bad === true) {
+          bad = true;
+        } else {
+          good = true;
+          localStorage.token = json.token;
+          setTimeout(() => {
+            window.location.assign("/");
+          }, 3000);
+        }
+      } else {
+        console.error("Can't receive data.");
+      }
+    } catch (e) {
+      console.log(e);
+      errServ = true;
+    }
   }
 
   onMount(() => {
     let btn = document.querySelector(".submi1");
-    btn.addEventListener("click", (ev) => {
-      co();
+    btn.addEventListener("click", async (ev) => {
+      await co();
     });
   });
 </script>

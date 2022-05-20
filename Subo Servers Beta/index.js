@@ -35,9 +35,9 @@ let getUserByID = (id) => {
   return k[0];
 };
 
-app.get("/users/private/exists", (req, res) => {
+app.get("/users/private/exists/:token", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", clientUrl);
-  let tokenSeek = req.query.token;
+  let tokenSeek = req.params.token;
   console.log(`Seeked for ${tokenSeek}`);
 
   let u = getUserByToken(tokenSeek);
@@ -49,9 +49,9 @@ app.get("/users/private/exists", (req, res) => {
   }
 });
 
-app.get("/users/private/get", (req, res) => {
+app.get("/users/private/get/:token", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", clientUrl);
-  let token = req.query.token;
+  let token = req.params.token;
   let p = getUserByToken(token).public;
   res.json(Object(p));
 });
@@ -66,10 +66,10 @@ app.get("/pages/nect", (req, res) => {
   console.log(`Client ${req.ip} redirected on Connect`);
 });
 
-app.get("/users/login", (req, res) => {
+app.get("/users/login/:email/:pw", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", clientUrl);
-  let email = req.query.email;
-  let pw = req.query.pw;
+  let email = req.params.email;
+  let pw = req.params.pw;
 
   let resj = {
     bad: true,

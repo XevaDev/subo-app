@@ -4,6 +4,7 @@
 
   import Navbar from "./Navbar.svelte";
   import Page from "./Page.svelte";
+  import { checkExist } from "./checkExist";
 
   let page: string | null = null;
 
