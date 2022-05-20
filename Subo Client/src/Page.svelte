@@ -20,7 +20,7 @@
   {#if page === 1}
     <div>
       <h1>Subo App</h1>
-      <p>Welcome to the universe of animated communities</p>
+      <p>Welcome to the universe of animated communities.</p>
 
       <br />
     </div>
