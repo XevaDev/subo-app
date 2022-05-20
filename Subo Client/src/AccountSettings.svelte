@@ -1,12 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import UserIcon from "./UserIcon.svelte";
-  type settingsType = {
+  import UserProfile from "./UserProfile.svelte";
+
+  export let settings: {
     username: string;
     profileLink: string;
     imageSource: string;
   };
-  export let settings: settingsType;
 
   onMount(() => {});
 </script>

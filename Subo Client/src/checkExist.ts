@@ -7,10 +7,13 @@ export async function checkExist() {
     console.error("Tried to connect but no token found.");
   } else {
     try {
-      const response = await fetch(`${serverBase}/checkExist/?token=${w}`);
+      const response = await fetch(
+        `${serverBase}/users/private/exists/?token=${w}`
+      );
       const json = await response.json();
       return json.exists ? true : false;
     } catch (e) {
+      delete window.localStorage.token;
       console.error("Failed to load account.");
     }
   }

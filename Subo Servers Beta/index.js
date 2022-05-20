@@ -27,7 +27,15 @@ let getUserByEmail = (email) => {
   return k[0];
 };
 
-app.get("/checkExist", (req, res) => {
+let getUserByID = (id) => {
+  let k = users.map((u) => {
+    if (u.public.id === id) return u.public;
+  });
+
+  return k[0];
+};
+
+app.get("/users/private/exists", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", clientUrl);
   let tokenSeek = req.query.token;
   console.log(`Seeked for ${tokenSeek}`);
@@ -41,24 +49,24 @@ app.get("/checkExist", (req, res) => {
   }
 });
 
-app.get("/getUserData", (req, res) => {
+app.get("/users/private/get", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", clientUrl);
   let token = req.query.token;
   let p = getUserByToken(token).public;
-  res.json({ id: p.id, avatar: p.avatar, username: p.username });
+  res.json(Object(p));
 });
 
-app.get("/reg", (req, res) => {
+app.get("/pages/reg", (req, res) => {
   res.redirect(`${clientUrl}/?page=9`);
   console.log(`Client ${req.ip} redirected on Register`);
 });
 
-app.get("/nect", (req, res) => {
+app.get("/pages/nect", (req, res) => {
   res.redirect(`${clientUrl}/?page=10`);
   console.log(`Client ${req.ip} redirected on Connect`);
 });
 
-app.get("/exclog", (req, res) => {
+app.get("/users/login", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", clientUrl);
   let email = req.query.email;
   let pw = req.query.pw;
@@ -76,7 +84,7 @@ app.get("/exclog", (req, res) => {
     }
   }
 
-  res.status(200).json({ bad: resj.bad, token: resj.token });
+  res.status(200).json(Object(resj));
 });
 
 app.listen(PORT, () => {});

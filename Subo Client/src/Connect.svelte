@@ -14,7 +14,7 @@
       pw: pw.value,
     };
 
-    fetch(`${baseServe}/exclog/?email=${form.email}&pw=${form.pw}`)
+    fetch(`${baseServe}/users/login?email=${form.email}&pw=${form.pw}`)
       .then((res) => {
         res.json().then((json) => {
           if (json) {

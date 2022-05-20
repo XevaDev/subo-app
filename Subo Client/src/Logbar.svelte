@@ -38,14 +38,13 @@
         username={v.settings.username}
         profileLink={v.settings.profileLink}
         src={v.settings.imageSource}
-        id={"navuicon"}
       />
     {/if}
     {#if !v.t}
       <div>
         <h6>Aren't you connected ?</h6>
-        <a href="http://localhost:2000/reg">Register</a>
-        <a href="http://localhost:2000/nect">Connect</a>
+        <a href="http://localhost:2000/pages/reg">Register</a>
+        <a href="http://localhost:2000/pages/nect">Connect</a>
       </div>
     {/if}
   {/await}
