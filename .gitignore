@@ -1,2 +1,4 @@
-Subo Client/node_modules/
-Subo Servers/node_modules/
+/node_modules/
+/public/build/
+
+.DS_Store
